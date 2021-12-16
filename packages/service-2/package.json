@@ -1,0 +1,12 @@
+{
+  "name": "service-2",
+  "version": "1.0.0",
+  "description": "This microservice has ~~two~~ **ONE** endpoint which can be called by the microservice 1. This endpoint performs a validation of the x-api-key in the first step.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
