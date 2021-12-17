@@ -3,6 +3,7 @@ import express, { Express } from "express";
 import http from "http";
 import morgan from "morgan";
 import configurationsRoutes from "./routes/configuration";
+import messagesRoutes from "./routes/messages";
 
 const router: Express = express();
 
@@ -16,6 +17,7 @@ router.use(express.json());
 router.use(cors());
 
 /** Routes */
+router.use("/messages", messagesRoutes);
 router.use("/configurations", configurationsRoutes);
 
 /** Error handling */
