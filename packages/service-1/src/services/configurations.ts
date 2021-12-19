@@ -34,6 +34,9 @@ const update = async (config: Configuration) => {
           webhookUrl: config.webhookUrl,
           webhookSecret: config.webhookSecret,
         },
+      },
+      {
+        upsert: true,
       }
     );
 

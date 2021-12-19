@@ -30,8 +30,11 @@ const getConfiguration = async (
 ) => {
   try {
     const configResult = await configurationService.get();
-
-    return res.status(200).json(configResult);
+    if (configResult) {
+      return res.status(200).json(configResult);
+    } else {
+      return res.status(404).send();
+    }
   } catch (e) {
     console.error(e);
     return res.status(500).send();

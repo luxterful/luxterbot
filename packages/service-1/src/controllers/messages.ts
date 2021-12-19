@@ -15,8 +15,15 @@ const postMessages = async (
   const botAnswer =
     "Hello, {{firstname}} {{lastname}}. Thanks for applying at BOTfriends. ";
 
-  const configuration = await configurationService.get();
+  let configuration;
+  try {
+    configuration = await configurationService.get();
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({ error: "could not load webhook config" });
+  }
 
+  // check if configuration is set in database
   if (configuration) {
     console.log("configuration found: ", configuration);
 

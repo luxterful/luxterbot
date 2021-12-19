@@ -1,6 +1,6 @@
 <template>
   <router-link to="/"> <p class="font-bold">&#60; back to chat</p></router-link>
-  <template v-if="configuration">
+  <template v-if="!loading">
     <div class="mt-4">
       <div class="w-full mb-6">
         <label
@@ -31,6 +31,7 @@
     </div>
     <lux-button @click="saveConfiguration"> Save </lux-button>
   </template>
+  <template v-else>Loading ...</template>
 </template>
 
 <script lang="ts">
@@ -42,8 +43,12 @@ export default defineComponent({
   name: "App",
   components: { LuxButton },
   setup() {
-    const configuration = ref<Configuration | null>(null);
+    const configuration = ref<Configuration>({
+      webhookUrl: "",
+      webhookSecret: "",
+    });
     const client = apiClient("http://localhost:8081");
+    const loading = ref(true);
 
     const saveConfiguration = () => {
       if (configuration.value) {
@@ -53,11 +58,13 @@ export default defineComponent({
 
     const fetchConfiguration = async () => {
       configuration.value = await client.getConfiguration();
+
+      loading.value = false;
     };
 
     fetchConfiguration();
 
-    return { saveConfiguration, configuration };
+    return { saveConfiguration, configuration, loading };
   },
 });
 </script>
