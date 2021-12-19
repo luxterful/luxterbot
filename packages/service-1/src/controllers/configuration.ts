@@ -34,8 +34,30 @@ const updateConfiguration = async (
     return res.status(200).json(configResult);
   } catch (e) {
     console.error(e);
-    return res.status(500).json({ message: "update failed" });
+    return res.status(500).json({ error: "update failed" });
   }
 };
 
-export default { updateConfiguration };
+const getConfiguration = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    await client.connect();
+
+    const database = client.db("luxterbot");
+    const configurations = database.collection("configurations");
+
+    const configResult = await configurations.findOne({
+      _id: new ObjectId("61bbc19ce805521164b8f15c"),
+    });
+
+    return res.status(200).json(configResult);
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({ error: "get failed" });
+  }
+};
+
+export default { updateConfiguration, getConfiguration };
