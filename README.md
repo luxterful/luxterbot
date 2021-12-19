@@ -1,10 +1,10 @@
 # botfriends coding challenge
 
-###### Job application by Lukas Bauer
+###### by Lukas Bauer
 
-This project is part of the coding challenge for my application at botfriends.
+This project is part of the coding challenge for botfriends.
 
-This project is setup as a Node monorepo and therefor it requires at least node version 7 and npm #TODO!
+This project is setup as a Node monorepo and therefor it requires at least npm version 7!
 
 # Things i would do after MVP is reached
 
