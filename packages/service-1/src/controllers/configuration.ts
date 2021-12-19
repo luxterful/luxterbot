@@ -19,7 +19,7 @@ const updateConfiguration = async (
     return res.status(200).json(configResult);
   } catch (e) {
     console.error(e);
-    return res.status(500).json({ error: "update failed" });
+    return res.status(500).send();
   }
 };
 
@@ -34,7 +34,7 @@ const getConfiguration = async (
     return res.status(200).json(configResult);
   } catch (e) {
     console.error(e);
-    return res.status(500).json({ error: "get failed" });
+    return res.status(500).send();
   }
 };
 

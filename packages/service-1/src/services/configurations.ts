@@ -1,8 +1,5 @@
 import { Configuration } from "@/types/configuration";
-import { MongoClient } from "mongodb";
-
-const mongoUri = "mongodb://root:example@localhost:27017/";
-const client = new MongoClient(mongoUri);
+import client from "./database";
 
 const getConfigurationCollection = () =>
   client.db("luxterbot").collection("configurations");
