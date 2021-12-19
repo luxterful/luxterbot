@@ -11,10 +11,7 @@ import { defineComponent, provide, ref } from "vue";
 export default defineComponent({
   name: "App",
   setup() {
-    const messages = ref<Array<Message>>([
-      { message: "Hello?", sender: "user" },
-      { message: "Yes, Hello! Who's there?", sender: "bot" },
-    ]);
+    const messages = ref<Array<Message>>([]);
 
     provide("messages", messages);
   },
