@@ -3,6 +3,6 @@ import controller from "../controllers/messages";
 
 const router = express.Router();
 
-router.get("/", controller.getMessages);
+router.post("/", controller.postMessages);
 
 export = router;
