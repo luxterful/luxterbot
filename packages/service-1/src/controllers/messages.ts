@@ -1,3 +1,4 @@
+import { Message } from "@/types/message";
 import axios from "axios";
 import { NextFunction, Request, Response } from "express";
 import { configurations as configurationService } from "../services/configurations";
@@ -7,9 +8,14 @@ const postMessages = async (
   res: Response,
   next: NextFunction
 ) => {
-  const userMessage = req.body.message;
-  if (userMessage === "Botfriends should hire Lukas!") {
-    return res.status(200).json({ message: "Yes! That's so true!" });
+  const reply = (message: string, sender: "bot" | "system") => {
+    const _message: Message = { message, sender };
+    res.status(200).json(_message);
+  };
+
+  const userMessage: Message = req.body;
+  if (userMessage.message === "Botfriends should hire Lukas!") {
+    return reply("Yes! That's so true!", "bot");
   }
 
   const botAnswer =
@@ -20,7 +26,7 @@ const postMessages = async (
     configuration = await configurationService.get();
   } catch (e) {
     console.error(e);
-    return res.status(500).json({ error: "could not load webhook config" });
+    return reply("Could not load webhook config.", "system");
   }
 
   // check if configuration is set in database
@@ -28,7 +34,7 @@ const postMessages = async (
     console.log("configuration found: ", configuration);
 
     try {
-      const webhookResponse = await axios.post(
+      const webhookResponse = await axios.post<Message>(
         configuration.webhookUrl,
         { message: botAnswer },
         {
@@ -38,14 +44,28 @@ const postMessages = async (
         }
       );
 
-      return res.status(200).json(webhookResponse.data);
+      return reply(webhookResponse.data.message, "bot");
     } catch (e: any) {
-      return res
-        .status(500)
-        .json({ error: "error during webhook call", detail: e.message });
+      console.error(e);
+
+      if (e.code === "ECONNREFUSED") {
+        return reply(
+          "Error during webhook call. Connection refused.",
+          "system"
+        );
+      } else if (e.response?.status === 403) {
+        return reply(
+          "Error during webhook call. Authorization error.",
+          "system"
+        );
+      } else if (e.response?.status === 404) {
+        return reply("Error during webhook call. Wrong webhook url.", "system");
+      } else {
+        return reply("Unknown error during webhook call.", "system");
+      }
     }
   } else {
-    return res.status(500).json({ error: "webhook data not set" });
+    return reply("Webhook data not set.", "system");
   }
 };
 

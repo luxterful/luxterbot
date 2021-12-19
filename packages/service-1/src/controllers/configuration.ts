@@ -10,16 +10,40 @@ const updateConfiguration = async (
   // get some posts
   const config: Configuration = req.body;
 
+  let webhookUrl;
+
   try {
-    const configResult = await configurationService.update({
-      webhookUrl: config.webhookUrl,
+    webhookUrl = new URL(config.webhookUrl);
+
+    if (
+      !webhookUrl.host.endsWith("luxterful.eu") &&
+      !webhookUrl.hostname.endsWith("localhost")
+    ) {
+      return res.status(500).send({ error: "Wrong host." });
+    }
+  } catch (e) {
+    return res.status(500).send({ error: "webhookUrl could not be parsed" });
+  }
+
+  try {
+    await configurationService.update({
+      webhookUrl: webhookUrl.href,
       webhookSecret: config.webhookSecret,
     });
-
-    return res.status(200).json(configResult);
   } catch (e) {
-    console.error(e);
-    return res.status(500).send();
+    return res
+      .status(500)
+      .send({ error: "failed to write configuration to database" });
+  }
+
+  try {
+    const configuration = await configurationService.get();
+    return res.status(200).json(configuration);
+  } catch (e) {
+    return res.status(500).send({
+      error:
+        "configuration written to database but new data could not be retreived",
+    });
   }
 };
 

@@ -30,6 +30,16 @@
       </div>
     </div>
     <lux-button @click="saveConfiguration"> Save </lux-button>
+    <div
+      v-if="saved"
+      class="inline-block ml-5 px-2 py-1 leading-normal text-green-700 bg-green-100 rounded-lg">
+      Saved
+    </div>
+    <div
+      v-if="error"
+      class="inline-block ml-5 px-2 py-1 leading-normal text-red-700 bg-red-100 rounded-lg">
+      Could not be saved
+    </div>
   </template>
   <template v-else>Loading ...</template>
 </template>
@@ -49,10 +59,23 @@ export default defineComponent({
     });
     const client = apiClient("http://localhost:8081");
     const loading = ref(true);
+    const saved = ref(false);
+    const error = ref(false);
 
     const saveConfiguration = () => {
       if (configuration.value) {
-        client.updateConfiguration(configuration.value);
+        client
+          .updateConfiguration(configuration.value)
+          .then((newConfiguration) => {
+            configuration.value = newConfiguration;
+            saved.value = true;
+            setTimeout(() => (saved.value = false), 1500);
+          })
+          .catch((err) => {
+            console.error(err);
+            error.value = true;
+            setTimeout(() => (error.value = false), 1500);
+          });
       }
     };
 
@@ -64,7 +87,7 @@ export default defineComponent({
 
     fetchConfiguration();
 
-    return { saveConfiguration, configuration, loading };
+    return { saveConfiguration, configuration, loading, saved, error };
   },
 });
 </script>
