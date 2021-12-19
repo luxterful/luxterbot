@@ -2,17 +2,18 @@ import axios from "axios";
 import { NextFunction, Request, Response } from "express";
 import { configurations as configurationService } from "../services/configurations";
 
-interface Message {
-  message: String;
-}
-
 const postMessages = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const answer =
-    "Hello, {{firstname}} {{lastname}}.Thanks for applying at BOTfriends. ";
+  const userMessage = req.body.message;
+  if (userMessage === "Botfriends should hire Lukas!") {
+    return res.status(200).json({ message: "Yes! That's so true!" });
+  }
+
+  const botAnswer =
+    "Hello, {{firstname}} {{lastname}}. Thanks for applying at BOTfriends. ";
 
   const configuration = await configurationService.get();
 
@@ -22,7 +23,7 @@ const postMessages = async (
     try {
       const webhookResponse = await axios.post(
         configuration.webhookUrl,
-        { message: answer },
+        { message: botAnswer },
         {
           headers: {
             "x-api-key": configuration.webhookSecret,

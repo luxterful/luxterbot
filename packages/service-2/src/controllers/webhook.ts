@@ -4,7 +4,7 @@ const webhookRPC = async (req: Request, res: Response, next: NextFunction) => {
   try {
     let message: string = req.body.message;
 
-    if (!req.body.message) {
+    if (!message) {
       return res.status(422).json({ error: "message must be set" });
     }
 

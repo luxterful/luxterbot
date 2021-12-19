@@ -27,7 +27,8 @@
     <input
       class="outline-0 focus:outline-none flex-1 mx-2"
       placeholder="Enter message ..."
-      v-model="textInputMessage" />
+      v-model="textInputMessage"
+      @keydown.enter="sendMessage" />
 
     <lux-button @click="sendMessage" :disabled="!textInputMessageFilled">
       Send
@@ -39,6 +40,7 @@
 import { computed, defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import LuxButton from "@/components/LuxButton.vue";
+import { apiClient } from "service-1/dist/client";
 
 interface IMessage {
   body: string;
@@ -50,6 +52,7 @@ export default defineComponent({
   components: { LuxButton },
   setup() {
     const router = useRouter();
+    const client = apiClient("http://localhost:8081");
 
     const textInputMessage = ref("");
 
@@ -62,10 +65,15 @@ export default defineComponent({
       () => textInputMessage.value.length > 0
     );
 
-    const sendMessage = () => {
+    const sendMessage = async () => {
       if (textInputMessageFilled.value) {
-        messages.value.push({ body: textInputMessage.value, author: "user" });
+        const userMessage = textInputMessage.value;
+        messages.value.push({ body: userMessage, author: "user" });
         textInputMessage.value = "";
+
+        client.postMessage({ message: userMessage }).then((value) => {
+          messages.value.push({ body: value.message, author: "bot" });
+        });
       }
     };
 
