@@ -10,16 +10,19 @@
       :key="idx"
       class="flex"
       :class="{
-        'justify-start': message.author === 'bot',
-        'justify-end': message.author === 'user',
+        'justify-start': message.sender === 'bot',
+        'justify-end': message.sender === 'user',
+        'justify-center': message.sender === 'system',
       }">
       <div
         class="px-2 py-1"
         :class="{
-          'bg-blue-500 rounded-t-xl rounded-r-xl': message.author === 'bot',
-          'bg-green-500 rounded-t-xl rounded-l-xl': message.author === 'user',
+          'bg-blue-500 rounded-t-xl rounded-r-xl': message.sender === 'bot',
+          'bg-green-500 rounded-t-xl rounded-l-xl': message.sender === 'user',
+          'bg-gray-500 rounded-xl text-sm text-white':
+            message.sender === 'system',
         }">
-        {{ message.body }}
+        {{ message.message }}
       </div>
     </div>
   </div>
@@ -37,15 +40,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+import { computed, defineComponent, inject, Ref, ref } from "vue";
 import { useRouter } from "vue-router";
 import LuxButton from "@/components/LuxButton.vue";
-import { apiClient } from "service-1/dist/client";
-
-interface IMessage {
-  body: string;
-  author: "user" | "bot";
-}
+import { apiClient, Message } from "service-1/dist/client";
 
 export default defineComponent({
   name: "App",
@@ -56,10 +54,7 @@ export default defineComponent({
 
     const textInputMessage = ref("");
 
-    const messages = ref<Array<IMessage>>([
-      { body: "Hello?", author: "user" },
-      { body: "Yes, Hello! Who's there?", author: "bot" },
-    ]);
+    const messages = inject("messages") as Ref<Array<Message>>;
 
     const textInputMessageFilled = computed(
       () => textInputMessage.value.length > 0
@@ -68,11 +63,11 @@ export default defineComponent({
     const sendMessage = async () => {
       if (textInputMessageFilled.value) {
         const userMessage = textInputMessage.value;
-        messages.value.push({ body: userMessage, author: "user" });
+        messages.value.push({ message: userMessage, sender: "user" });
         textInputMessage.value = "";
 
-        client.postMessage({ message: userMessage }).then((value) => {
-          messages.value.push({ body: value.message, author: "bot" });
+        client.postMessage({ message: userMessage }).then((messageResponse) => {
+          messages.value.push(messageResponse);
         });
       }
     };

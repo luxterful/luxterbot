@@ -5,12 +5,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { Message } from "service-1/dist/client";
+import { defineComponent, provide, ref } from "vue";
 
 export default defineComponent({
   name: "App",
   setup() {
-    return {};
+    const messages = ref<Array<Message>>([
+      { message: "Hello?", sender: "user" },
+      { message: "Yes, Hello! Who's there?", sender: "bot" },
+    ]);
+
+    provide("messages", messages);
   },
 });
 </script>
