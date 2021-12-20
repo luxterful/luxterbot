@@ -8,6 +8,10 @@
     "serve:s1": "npm run serve -w service-1",
     "serve:frontend": "npm run serve -w frontend"
   },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
