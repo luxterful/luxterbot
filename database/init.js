@@ -1,3 +1,3 @@
 db = new Mongo().getDB("luxterbot");
-db.createCollection("collections", { capped: false });
-db.collections.insert({ webhookUrl: null, webhookSecret: null });
+db.createCollection("configurations", { capped: false });
+db.configurations.insert({ webhookUrl: "", webhookSecret: "" });
