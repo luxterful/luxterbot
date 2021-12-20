@@ -5,34 +5,73 @@ services:
     build: 
       context: .
       dockerfile: ./packages/service-1/Dockerfile
-    ports:
-      - "8081:8081"
+    expose:
+      - "8081"
     environment:
-      DATABASE_STRING: mongodb://root:HLp3asdhHKJHDfu3hf98@host.docker.internal:27017/
+      DATABASE_STRING: mongodb://root:HLp3asdhHKJHDfu3hf98@database:27017/
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=shared"
+      - "traefik.http.routers.s1.rule=Host(`service-1.bot.luxterful.eu`)"
+      - "traefik.http.services.s1.loadbalancer.server.port=8081"
+      - "traefik.http.routers.s1.tls=true"
+      - "traefik.http.routers.s1.tls.certresolver=acmeresolver"
+    networks:
+      - shared
+      - internal
+
   service-2:
     image: luxterbot/service-2
     build: 
       context: .
       dockerfile: ./packages/service-2/Dockerfile
-    ports:
-      - "8082:8082"
+    expose:
+      - "8082"
     environment:
       SECRET: 5ierh7Kay6MoKxx7QclbBq7I
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=shared"
+      - "traefik.http.routers.s2.rule=Host(`service-2.bot.luxterful.eu`)"
+      - "traefik.http.services.s2.loadbalancer.server.port=8082"
+      - "traefik.http.routers.s2.tls=true"
+      - "traefik.http.routers.s2.tls.certresolver=acmeresolver"
+    networks:
+      - shared
+      - internal
+    
   frontend:
     image: luxterbot/frontend
     build: 
       context: .
       dockerfile: ./packages/frontend/Dockerfile
-    ports:
-      - "8080:80"
+    expose:
+      - "80"
     environment:
-      SERVICE_1_URL: http://localhost:8081
+      SERVICE_1_URL: http://service-1.bot.luxterful.eu
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=shared"
+      - "traefik.http.routers.fe.rule=Host(`bot.luxterful.eu`)"
+      - "traefik.http.services.fe.loadbalancer.server.port=80"
+      - "traefik.http.routers.fe.tls=true"
+      - "traefik.http.routers.fe.tls.certresolver=acmeresolver"
+    networks:
+      - shared
+      - internal
+    
   database:
     image: mongo
     restart: always
-    ports:
-      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: HLp3asdhHKJHDfu3hf98
       MONGO_INITDB_DATABASE: luxterbot
+    networks:
+      - internal
+
+networks:
+  shared:
+    external: true
+  internal:
+    driver: bridge
