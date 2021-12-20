@@ -66,9 +66,10 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: HLp3asdhHKJHDfu3hf98
-      MONGO_INITDB_DATABASE: luxterbot
     networks:
       - internal
+    volumes:
+      - ./database/init.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
 
 networks:
   shared:
