@@ -1,0 +1,25 @@
+version: "3"
+services:
+  traefik:
+    container_name: traefik
+    image: traefik:v2.4
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/etc/traefik/traefik.yml
+      - accesslogs:/accesslogs
+      - letsencrypt:/letsencrypt
+    networks:
+      - shared
+
+volumes:
+  accesslogs:
+    external: true
+  letsencrypt:
+    external: true
+
+networks:
+  shared:
+    external: true
