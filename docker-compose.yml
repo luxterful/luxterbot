@@ -22,7 +22,7 @@ services:
     image: luxterbot/frontend
     build: 
       context: .
-      dockerfile: ./packages/service-2/Dockerfile
+      dockerfile: ./packages/frontend/Dockerfile
     ports:
       - "8080:80"
     environment:
