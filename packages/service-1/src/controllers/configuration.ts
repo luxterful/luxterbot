@@ -12,6 +12,8 @@ const updateConfiguration = async (
 
   let webhookUrl;
 
+  // only valid urls should be accepted as webhook urls
+  // only luxterful.eu and localhost is allowed as host
   try {
     webhookUrl = new URL(config.webhookUrl);
 
@@ -57,7 +59,8 @@ const getConfiguration = async (
     if (configResult) {
       return res.status(200).json(configResult);
     } else {
-      return res.status(404).send();
+      const emptyConfig: Configuration = { webhookSecret: "", webhookUrl: "" };
+      return res.status(200).send(emptyConfig);
     }
   } catch (e) {
     console.error(e);

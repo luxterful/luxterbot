@@ -10,6 +10,7 @@ const get = async (): Promise<Configuration | null> => {
 
     const configurations = getConfigurationCollection();
 
+    // there should be only one configuration document
     const configResult = await configurations.findOne<Configuration>({});
 
     return configResult;
@@ -36,6 +37,7 @@ const update = async (config: Configuration) => {
         },
       },
       {
+        // if there is no document a new one should be created
         upsert: true,
       }
     );
