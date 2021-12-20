@@ -57,7 +57,7 @@ export default defineComponent({
       webhookUrl: "",
       webhookSecret: "",
     });
-    const service_1_url = process.env.VUE_APP_SERVICE_1_URL!;
+    const service_1_url = "http://service-1.bot.luxterful.eu";
     const client = apiClient(service_1_url);
     const loading = ref(true);
     const saved = ref(false);
