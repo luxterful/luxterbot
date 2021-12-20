@@ -57,7 +57,8 @@ export default defineComponent({
       webhookUrl: "",
       webhookSecret: "",
     });
-    const client = apiClient("http://localhost:8081");
+    const service_1_url = process.env.SERVICE_1_URL!;
+    const client = apiClient(service_1_url);
     const loading = ref(true);
     const saved = ref(false);
     const error = ref(false);

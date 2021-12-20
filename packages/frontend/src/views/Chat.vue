@@ -50,7 +50,9 @@ export default defineComponent({
   components: { LuxButton },
   setup() {
     const router = useRouter();
-    const client = apiClient("http://localhost:8081");
+    const service_1_url = process.env.SERVICE_1_URL!;
+
+    const client = apiClient(service_1_url);
 
     const textInputMessage = ref("");
 
