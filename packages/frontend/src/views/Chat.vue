@@ -50,7 +50,7 @@ export default defineComponent({
   components: { LuxButton },
   setup() {
     const router = useRouter();
-    const service_1_url = process.env.SERVICE_1_URL!;
+    const service_1_url = process.env.VUE_APP_SERVICE_1_URL!;
 
     const client = apiClient(service_1_url);
 

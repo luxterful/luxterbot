@@ -48,7 +48,7 @@ services:
     expose:
       - "80"
     environment:
-      SERVICE_1_URL: http://service-1.bot.luxterful.eu
+      VUE_APP_SERVICE_1_URL: http://service-1.bot.luxterful.eu
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=shared"
