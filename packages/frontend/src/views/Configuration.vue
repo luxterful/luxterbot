@@ -47,7 +47,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import LuxButton from "@/components/LuxButton.vue";
-import { apiClient, Configuration } from "service-1/dist/client";
+import { apiClient, Configuration } from "service-1";
 
 export default defineComponent({
   name: "App",

@@ -2,7 +2,7 @@
   "name": "service-1",
   "version": "1.0.0",
   "description": "This microservice has two endpoints which can be called by the frontend:",
-  "main": "index.js",
+  "main": "dist/client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "nodemon src/server.ts",

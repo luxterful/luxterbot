@@ -43,7 +43,7 @@
 import { computed, defineComponent, inject, Ref, ref } from "vue";
 import { useRouter } from "vue-router";
 import LuxButton from "@/components/LuxButton.vue";
-import { apiClient, Message } from "service-1/dist/client";
+import { apiClient, Message } from "service-1";
 
 export default defineComponent({
   name: "App",
