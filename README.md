@@ -12,6 +12,12 @@ Demo is available at [https://bot.luxterful.eu](https://bot.luxterful.eu). You c
 
 ## Run project locally
 
+Install dependencies
+
+```
+$ npm install
+```
+
 Edit .env file and change `VUE_APP_SERVICE_1_URL` to `http://localhost:8081`
 
 Load all environment variables
