@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "serve": "concurrently -n s1,s1-client,s2,frontend 'npm:serve:s1' 'npm:serve:s1-client' 'npm:serve:s2' 'npm:serve:frontend'",
     "serve:s1": "npm run serve -w service-1",
     "serve:s1-client": "npm run serve:client -w service-1",
     "serve:s2": "npm run serve -w service-2",
@@ -18,5 +19,8 @@
   "license": "ISC",
   "workspaces": [
     "./packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^6.5.1"
+  }
 }
