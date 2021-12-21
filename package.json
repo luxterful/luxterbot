@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve:s1": "npm run serve -w service-1",
+    "serve:s1-client": "npm run serve:client -w service-1",
     "serve:s2": "npm run serve -w service-2",
     "serve:frontend": "npm run serve -w frontend"
   },
