@@ -11,7 +11,11 @@ const get = async (): Promise<Configuration | null> => {
     const configurations = getConfigurationCollection();
 
     // there should be only one configuration document
-    const configResult = await configurations.findOne<Configuration>({});
+    // because we never need _id we can ignore it
+    const configResult = await configurations.findOne<Configuration>(
+      {},
+      { projection: { _id: 0 } }
+    );
 
     return configResult;
   } catch (e) {

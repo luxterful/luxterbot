@@ -1,11 +1,4 @@
-import { MongoDBEntity, MongoDBEntityDTO } from "./mongodb";
-
-export interface Configuration extends MongoDBEntity {
-  webhookUrl: string;
-  webhookSecret: string;
-}
-
-export interface ConfigurationDTO extends MongoDBEntityDTO {
+export interface Configuration {
   webhookUrl: string;
   webhookSecret: string;
 }
