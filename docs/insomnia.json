@@ -1,0 +1,237 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2021-12-21T13:52:10.488Z",
+  "__export_source": "insomnia.desktop.app:v2021.7.2",
+  "resources": [
+    {
+      "_id": "req_841c3150d36e4bedbbd48024fc8a33a6",
+      "parentId": "fld_9662affebb3f4b638f4273806f0ae2c8",
+      "modified": 1640094695232,
+      "created": 1639927663552,
+      "url": "{{ _['base-s1'] }}/messages",
+      "name": "message",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"message\": \"Botfriends should hire Lukas!\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_1e5006cc9dcd4c0287a2d3ed40bf81af"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1639927663552,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_9662affebb3f4b638f4273806f0ae2c8",
+      "parentId": "wrk_92a38266488d4050acd388fc9ca463bc",
+      "modified": 1639925355224,
+      "created": 1639925355224,
+      "name": "Service 1",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1639925355224,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_92a38266488d4050acd388fc9ca463bc",
+      "parentId": null,
+      "modified": 1640094703934,
+      "created": 1639674753968,
+      "name": "Luxterbot",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_337d9339cdba41369fcb7f983e121cf1",
+      "parentId": "fld_9662affebb3f4b638f4273806f0ae2c8",
+      "modified": 1640085784021,
+      "created": 1639674765038,
+      "url": "{{ _['base-s1'] }}/configurations",
+      "name": "configurations",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1639674765038,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_b7f7813ba6f948c1bd65c79fc5a035b1",
+      "parentId": "fld_9662affebb3f4b638f4273806f0ae2c8",
+      "modified": 1640094695170,
+      "created": 1639925392448,
+      "url": "{{ _['base-s1'] }}/configurations",
+      "name": "configurations",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"webhookUrl\": \"http://localhost:8082/webhook\",\n\t\"webhookSecret\": \"5ierh7Kay6MoKxx7QclbBq7I\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_830788f3e02248ce9dfeee9bdd6e620f"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1639407254923.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_60eb6b9891a74bf58d08f8a97d6cb021",
+      "parentId": "fld_a2b69c7f09764b63a70560e05414fe9e",
+      "modified": 1640094662439,
+      "created": 1639919863573,
+      "url": "{{ _['base-s2'] }}/webhook",
+      "name": "webhook",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"message\": \"Hello, {{ firstname }} {{ lastname }}. Thanks for applying at BOTfriends. \"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_5726996bc2ac4e98b6942f9e65b9d9ee"
+        },
+        {
+          "id": "pair_18d8963fcd79419e96fd0caf581b9a8a",
+          "name": "x-api-key",
+          "value": "5ierh7Kay6MoKxx7QclbBq7I",
+          "description": ""
+        },
+        {
+          "id": "pair_94a716ece500498eb2668eca9394ddbe",
+          "name": "",
+          "value": "",
+          "description": ""
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1639919863574,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": true,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_a2b69c7f09764b63a70560e05414fe9e",
+      "parentId": "wrk_92a38266488d4050acd388fc9ca463bc",
+      "modified": 1639919853364,
+      "created": 1639919853364,
+      "name": "Service 2",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1639919853364,
+      "_type": "request_group"
+    },
+    {
+      "_id": "env_df9c71e28439dc247a1b753aefa6922ecaf5c0d6",
+      "parentId": "wrk_92a38266488d4050acd388fc9ca463bc",
+      "modified": 1640085655136,
+      "created": 1639674753980,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": {},
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1639674753980,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_df9c71e28439dc247a1b753aefa6922ecaf5c0d6",
+      "parentId": "wrk_92a38266488d4050acd388fc9ca463bc",
+      "modified": 1639674753983,
+      "created": 1639674753983,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_025932374e6f493995ec92a1719d7437",
+      "parentId": "wrk_92a38266488d4050acd388fc9ca463bc",
+      "modified": 1639674753973,
+      "created": 1639674753973,
+      "fileName": "Playground",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    },
+    {
+      "_id": "env_f9a5f22bf6664755b536ee3bf0b63a63",
+      "parentId": "env_df9c71e28439dc247a1b753aefa6922ecaf5c0d6",
+      "modified": 1640094625275,
+      "created": 1640085660216,
+      "name": "local",
+      "data": {
+        "base-s1": "http://localhost:8081",
+        "base-s2": "http://localhost:8082"
+      },
+      "dataPropertyOrder": { "&": ["base-s1", "base-s2"] },
+      "color": "#65bd6b",
+      "isPrivate": false,
+      "metaSortKey": 1640085660216,
+      "_type": "environment"
+    },
+    {
+      "_id": "env_885ae75049a54eb4bcb919905d4afd0a",
+      "parentId": "env_df9c71e28439dc247a1b753aefa6922ecaf5c0d6",
+      "modified": 1640094608086,
+      "created": 1640085699270,
+      "name": "prod",
+      "data": {
+        "base-s1": "https://service-1.bot.luxterful.eu",
+        "base-s2": "https://service-2.bot.luxterful.eu"
+      },
+      "dataPropertyOrder": { "&": ["base-s1", "base-s2"] },
+      "color": "#f83a3a",
+      "isPrivate": false,
+      "metaSortKey": 1640085699270,
+      "_type": "environment"
+    }
+  ]
+}
