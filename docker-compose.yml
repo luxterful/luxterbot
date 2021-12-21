@@ -53,7 +53,7 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=shared"
       - "traefik.http.routers.fe.rule=Host(`bot.luxterful.eu`)"
-      - "traefik.http.services.fe.loadbalancer.server.port=80"
+      - "traefik.http.services.fe.loadbalancer.server.port=8080"
       - "traefik.http.routers.fe.tls=true"
       - "traefik.http.routers.fe.tls.certresolver=acmeresolver"
     networks:
