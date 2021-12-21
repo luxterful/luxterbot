@@ -4,6 +4,8 @@ COPY package*.json ./
 COPY packages/frontend/ ./packages/frontend/
 COPY packages/service-1/ ./packages/service-1/
 RUN npm install
+ARG VUE_APP_SERVICE_1_URL
+ENV VUE_APP_SERVICE_1_URL $VUE_APP_SERVICE_1_URL
 RUN npm run -w service-1 build:client
 RUN npm run -w frontend build
 
