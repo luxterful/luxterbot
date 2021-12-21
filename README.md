@@ -60,6 +60,10 @@ $ docker-compose up
 
 ## Things that are missing
 
-- input data validation for POST/PUT requests
-- testing of functions
-- POST /messages endpoint of service 1 with a webSocket endpoint
+- Input data validation for POST/PUT requests
+- Automated testing of functionality
+- POST /messages endpoint of service 1 as webSocket endpoint
+
+## Presentation slide
+
+The presentation slides can be fount [here](https://github.com/luxterful/luxterbot/blob/main/docs/presentation.pdf?raw=true)
