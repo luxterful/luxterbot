@@ -40,7 +40,7 @@ Access http://localhost:8080
 This project uses traefik as an revere proxy to route traffic through the same domain. First start Traefik.
 
 ```
-$ docker-compose up -f ./reverseProxy/docker-compose.yml
+$ docker-compose -f ./reverseProxy/docker-compose.yml up
 ```
 
 Then start the main project:
