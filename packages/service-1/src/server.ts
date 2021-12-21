@@ -1,3 +1,8 @@
+if (!process.env.DATABASE_STRING) {
+  console.error("DATABASE_STRING environment variable not set");
+  process.exit(1);
+}
+
 import cors from "cors";
 import express, { Express } from "express";
 import http from "http";

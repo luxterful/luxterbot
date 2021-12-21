@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "serve:s1": "npm run serve -w service-1",
+    "serve:s2": "npm run serve -w service-1",
     "serve:frontend": "npm run serve -w frontend"
   },
   "engines": {

@@ -1,3 +1,8 @@
+if (!process.env.SECRET) {
+  console.error("SECRET environment variable not set");
+  process.exit(1);
+}
+
 import cors from "cors";
 import express, { Express } from "express";
 import http from "http";
