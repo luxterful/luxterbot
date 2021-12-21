@@ -10,7 +10,30 @@ Demo is available at [https://bot.luxterful.eu](https://bot.luxterful.eu). You c
 
 > webhookSecret: **5ierh7Kay6MoKxx7QclbBq7I**
 
-## How to run the project
+## Run project locally
+
+First we need to load all environment variables.
+
+```
+$ export $(cat .env | xargs)
+$ export DATABASE_STRING=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@localhost:27017/
+```
+
+Start the local database
+
+```
+$ docker-compose -f database/docker-compose.yml up -d
+```
+
+Start the three projects
+
+```
+$ npm run serve:s1 & npm run serve:s2 & npm run serve:frontend
+```
+
+Access http://localhost:8080
+
+## How to run the project in production
 
 This project uses traefik as an revere proxy to route traffic through the same domain. First start Traefik.
 
