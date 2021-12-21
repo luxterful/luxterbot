@@ -47,7 +47,8 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import LuxButton from "@/components/LuxButton.vue";
-import { apiClient, Configuration } from "service-1";
+import { Configuration } from "service-1";
+import { client } from "@/api/apiClient";
 
 export default defineComponent({
   name: "App",
@@ -57,8 +58,7 @@ export default defineComponent({
       webhookUrl: "",
       webhookSecret: "",
     });
-    const service_1_url = "https://service-1.bot.luxterful.eu";
-    const client = apiClient(service_1_url);
+
     const loading = ref(true);
     const saved = ref(false);
     const error = ref(false);

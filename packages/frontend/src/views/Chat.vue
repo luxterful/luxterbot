@@ -43,16 +43,14 @@
 import { computed, defineComponent, inject, Ref, ref } from "vue";
 import { useRouter } from "vue-router";
 import LuxButton from "@/components/LuxButton.vue";
-import { apiClient, Message } from "service-1";
+import { Message } from "service-1";
+import { client } from "@/api/apiClient";
 
 export default defineComponent({
   name: "App",
   components: { LuxButton },
   setup() {
     const router = useRouter();
-    const service_1_url = "https://service-1.bot.luxterful.eu";
-
-    const client = apiClient(service_1_url);
 
     const textInputMessage = ref("");
 
