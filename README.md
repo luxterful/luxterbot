@@ -40,6 +40,7 @@ Access http://localhost:8080
 This project uses traefik as an revere proxy to route traffic through the same domain. First start Traefik.
 
 ```
+$ docker network create shared
 $ docker-compose -f ./reverseProxy/docker-compose.yml up
 ```
 
@@ -53,3 +54,4 @@ $ docker-compose up
 
 - input data validation for POST/PUT requests
 - testing of functions
+- remove unecessary dependencies and move the dev dependecies to the right spot (s1 and s2)
