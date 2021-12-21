@@ -12,7 +12,9 @@ Demo is available at [https://bot.luxterful.eu](https://bot.luxterful.eu). You c
 
 ## Run project locally
 
-First we need to load all environment variables.
+Edit .env file and change `VUE_APP_SERVICE_1_URL` to `http://localhost:8081`
+
+Load all environment variables
 
 ```
 $ export $(cat .env | xargs)
