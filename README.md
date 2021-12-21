@@ -4,6 +4,8 @@
 
 This project is part of the coding challenge for botfriends.
 
+![preview](https://github.com/luxterful/luxterbot/blob/main/docs/preview.png?raw=true)
+
 Demo is available at [https://bot.luxterful.eu](https://bot.luxterful.eu). You can use following data as configuration:
 
 > webhookUrl: **https://service-2.bot.luxterful.eu/webhook**
