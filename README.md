@@ -49,13 +49,13 @@ This project uses traefik as an revere proxy to route traffic through the same d
 
 ```
 $ docker network create shared
-$ docker-compose -f ./reverseProxy/docker-compose.yml up
+$ docker-compose -f ./reverseProxy/docker-compose.yml up -d
 ```
 
 Then start the main project:
 
 ```
-$ docker-compose up
+$ docker-compose up -d
 ```
 
 ## Things that are missing
