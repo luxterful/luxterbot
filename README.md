@@ -62,4 +62,4 @@ $ docker-compose up
 
 - input data validation for POST/PUT requests
 - testing of functions
-- remove unecessary dependencies and move the dev dependecies to the right spot (s1 and s2)
+- POST /messages endpoint of service 1 with a webSocket endpoint
