@@ -8,7 +8,7 @@ services:
     expose:
       - "8081"
     environment:
-      DATABASE_STRING: mongodb://root:HLp3asdhHKJHDfu3hf98@database:27017/
+      DATABASE_STRING: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@database:27017/
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=shared"
@@ -28,7 +28,7 @@ services:
     expose:
       - "8082"
     environment:
-      SECRET: 5ierh7Kay6MoKxx7QclbBq7I
+      SECRET: ${SECRET} 
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=shared"
@@ -46,7 +46,7 @@ services:
       context: .
       dockerfile: ./packages/frontend/Dockerfile
       args:
-        - VUE_APP_SERVICE_1_URL=http://service-1.bot.luxterful.eu
+        - VUE_APP_SERVICE_1_URL=${VUE_APP_SERVICE_1_URL} 
     expose:
       - "8080"
     labels:
@@ -64,8 +64,8 @@ services:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: HLp3asdhHKJHDfu3hf98
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME} 
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     networks:
       - internal
     volumes:
