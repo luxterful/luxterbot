@@ -66,4 +66,4 @@ $ docker-compose up
 
 ## Presentation slide
 
-The presentation slides can be fount [here](https://github.com/luxterful/luxterbot/blob/main/docs/presentation.pdf?raw=true)
+The presentation slides can be found [here](https://github.com/luxterful/luxterbot/blob/main/docs/presentation.pdf?raw=true)
