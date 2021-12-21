@@ -38,7 +38,7 @@ $ docker-compose -f database/docker-compose.yml up -d
 Start the three projects
 
 ```
-$ npm run serve:s1 & npm run serve:s2 & npm run serve:frontend
+$ npm run serve:s1 & npm run serve:s1-client & npm run serve:s2 & npm run serve:frontend
 ```
 
 Access http://localhost:8080
